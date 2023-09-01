@@ -8,36 +8,48 @@
     include('layouts/header.php');
 ?>
 
-<select name="category" id="">
+<!-- <select name="category" id=""> -->
 <?php
 
 // Get selected category ID from URL
-$category_id = $_GET['product_id'];
+
 
 // Fetch products from the database for the selected category
-$sql = "SELECT * FROM products ";
-$result = $conn->query($sql);
+// $sql = "SELECT * FROM products";
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "Product ID: " . $row['product_id'] . "<br>";
-        echo "Product Name: " . $row['product_name'] . "<br>";
-        echo "Product Category" . $row['product_category'] . "<br>";
-        echo "Description: " . $row['product_description'] . "<br>";
-        echo "Product_image" . $row['product_image'] . "<br>";
-        echo "Product_image2" . $row['product_image2'] . "<br>";
-        echo "Product_image3" . $row['product_image3'] . "<br>";
-        echo "Product_image4" . $row['product_image4'] . "<br>";
-        echo "Price: " . $row['price'] . "<br>";
-        echo "Product_special_offer" . $row['product_special_offer'] . "<br>";
-        echo "Product_color" . $row['product_color'] . "<br>";
-    }
-} else {
-    echo "No products found.";
-}
+$stmt = $conn->prepare("SELECT * FROM products  where product_category = 'babyGifts'");
 
+$stmt->execute();
+
+$featured_products = $stmt->get_result(); 
+// var_dump($featured_products);
+
+
+
+?>
+
+<div class="row mx-auto container">
+<?php while($row= $featured_products->fetch_assoc()){  ?>
+
+<div class="product text-center col-lg-3 col-md-4 col-sm-12" style="margin-top: 10%;">
+    <img style="height: 50vh;" class="img-fluid mb-3" src="assets/images/<?php echo $row['product_image']; ?> " alt="">
+        <div class="star">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+    <h5 class="p-name"><?php echo $row['product_name']; ?></h5>
+    <h4 class="p-price">$<?php echo $row['product_price']; ?></h4>
+    <a href="<?php echo"single_product.php?product_id=". $row['product_id']; ?>"><button class="buy-btn">Buy Now</button></a> 
+</div>
+
+<?php } 
 $conn->close();
 ?>
+</div>
+
 
 </select>
 

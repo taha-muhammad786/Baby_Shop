@@ -103,8 +103,12 @@ include('header.php');
 
                 <div class="form-group mt-2">
                     <label>Category</label>
-                    <select type="text" name="category" class="form-control" required>
-                        <option value="Jeans">Jeans</option>
+                    <select name="category" type="text" required class="form-control">
+                        <option value="babyClothing">Baby Clothing</option>
+                        <option value="babyGifts">Baby Gifts</option>
+                        <option value="babyHealth">Baby Health</option>
+                        <option value="Diapering">Diapering</option>
+                        <option value="Nursing&Feeding">Nursing & Feeding</option>
                     </select>
                 </div>
 

@@ -47,7 +47,7 @@ include('layouts/header.php');
             <img src="assets/images/b1.jpg" class="img-fluid" alt="">
             <div class="details">
                 <h2>Baby Clothing</h2>
-                <button class="text-uppercase">Shop Now</button>
+                <a href="babyClothing.php"><button class="text-uppercase">Shop Now</button></a> 
             </div>
         </div>
         <!-- Two -->
@@ -55,7 +55,7 @@ include('layouts/header.php');
             <img src="assets/images/b2.jpg" class="img-fluid" alt="">
             <div class="details">
                 <h2>Baby Gifts</h2>
-                <button class="text-uppercase">Shop Now</button>
+                <a href="babyGifts.php"><button class="text-uppercase">Shop Now</button></a>
             </div>
         </div>
         <!-- Three -->
@@ -63,7 +63,7 @@ include('layouts/header.php');
             <img src="assets/images/b3.jpg" class="img-fluid" alt="">
             <div class="details">
                 <h2>Nursing</h2>
-                <button class="text-uppercase">Shop Now</button>
+                <a href="nursing&feeding.php"><button class="text-uppercase">Shop Now</button></a>
             </div>
         </div>
 
@@ -75,7 +75,7 @@ include('layouts/header.php');
             <img src="assets/images/b4.jpg" class="img-fluid" alt="">
             <div class="details">
                 <h2>Baby Health</h2>
-                <button class="text-uppercase">Shop Now</button>
+                <a href="babyHealth.php"><button class="text-uppercase">Shop Now</button></a>
             </div>
         </div>
 
@@ -83,7 +83,7 @@ include('layouts/header.php');
             <img src="assets/images/b1.jpg" class="img-fluid" alt="">
             <div class="details">
                 <h2>Diapering</h2>
-                <button class="text-uppercase">Shop Now</button>
+                <a href="diapering.php"><button class="text-uppercase">Shop Now</button></a>
             </div>
         </div>
     </div>

@@ -1,29 +1,58 @@
 <?php
+
+ $conn = new mysqli("localhost","root","","baby_shop");
+?>
+
+
+<?php
     include('layouts/header.php');
 ?>
 
 
+<!-- <select name="category" id=""> -->
+<?php
 
-<select name="babyHealth">
-    <?php
-    $sql_categories = "SELECT * FROM categories";
-    $result_categories = $conn->query($sql_categories);
+// Get selected category ID from URL
 
-    if ($result_categories->num_rows > 0) {
-        while ($row_category = $result_categories->fetch_assoc()) {
-            echo "<option value='" . $row_category['category_id'] . "'>" . $row_category['category_name'] . "</option>";
-        }
-    } else {
-        echo "<option value=''>No categories found</option>";
-    }
-    ?>
+
+// Fetch products from the database for the selected category
+// $sql = "SELECT * FROM products";
+
+$stmt = $conn->prepare("SELECT * FROM products  where product_category = 'babyHealth'");
+
+$stmt->execute();
+
+$featured_products = $stmt->get_result(); 
+// var_dump($featured_products);
+
+
+
+?>
+
+<div class="row mx-auto container">
+<?php while($row= $featured_products->fetch_assoc()){  ?>
+
+<div class="product text-center col-lg-3 col-md-4 col-sm-12" style="margin-top: 10%;">
+    <img style="height: 50vh;" class="img-fluid mb-3" src="assets/images/<?php echo $row['product_image']; ?> " alt="">
+        <div class="star">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+    <h5 class="p-name"><?php echo $row['product_name']; ?></h5>
+    <h4 class="p-price">$<?php echo $row['product_price']; ?></h4>
+    <a href="<?php echo"single_product.php?product_id=". $row['product_id']; ?>"><button class="buy-btn">Buy Now</button></a> 
+</div>
+
+<?php } 
+$conn->close();
+?>
+</div>
+
+
 </select>
-
-
-
-
-
-
 
 <?php
     include('layouts/footer.php');
